@@ -27,6 +27,8 @@
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
+
+    /* Modal Content/Box */
     .modal-content {
         background-color: #fff;
         margin: 5% auto; /* 15% from the top and centered */
@@ -37,39 +39,41 @@
 </style>
 <?php
     session_start();
-    $prenom = '';
-    $nom = '';
-    $phone = '';
-    require("fonction/traitement.php");
+    require ("../fonction/traitement.php");
+    $tel = "";
+    $password = "";
     if(isset($_POST['submit'])){
-        //On met les données récupérées dans des variables
-        $prenom = $_POST['prenom'];
-        $nom = $_POST['nom'];
-        $phone = $_POST['phone'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //Pour cripter le mot de passe
-        
-        //On vérifie si le numéro de téléphone n'existe pas déjà dans la base de données
-        $result = verifPhone($phone, 'client');
-        if($result){
-            //Si le numéro existe déjà, on bloque l'inscription
-            echo "<div id='myModal' class='modal'>
+        $tel = $_POST['username'];
+        $password = $_POST['password'];
+        $admin = connexionAdmin($tel);
+        if($admin){
+            $passwordHash = $admin['password'];
+            if(password_verify($password, $passwordHash)){
+                $_SESSION['prenom'] = $admin['prenom'];
+                $_SESSION['nom'] = $admin['nom'];
+                $_SESSION['telephone'] = $admin['telephone'];
+                $_SESSION['id_admin'] = $admin['id_user'];
+                header('Location: index.php?page=home');
+            }else{
+                echo "<div id='myModal' class='modal'>
                 <div class='modal-content justify-content-center align-items-center text-center'>
                     <i class='uil uil-exclamation-circle'></i>
-                    <h5 style='color: red'>Le numéro de téléphone existe déjà!</h5>
+                    <h5 style='color: red'>Mot de passe incorrect!</h5>
                     <button id='btn_close' class='btn btn-exit'>Fermer</button>
                 </div>
                </div>";
-
+            }
             
         }else{
-            ajoutUser($prenom, $nom, $phone, $password, 'client');
-            $_SESSION['prenom'] = $prenom;
-            $_SESSION['nom'] = $nom;
-            $_SESSION['telephone'] = $phone;
-            $client = getProfil($phone);
-            $_SESSION['id_client'] = $client['id_client'];
-            header('Location: index.php?page=client');
+            echo "<div id='myModal' class='modal'>
+            <div class='modal-content justify-content-center align-items-center text-center'>
+                <i class='uil uil-exclamation-circle'></i>
+                <h5 style='color: red'>Login ou mot de passe incorrect!</h5>
+                <button id='btn_close' class='btn btn-exit'>Fermer</button>
+            </div>
+           </div>";
         }
+        
 
         echo "<script type='text/javascript'>
                 var modal = document.getElementById('myModal');
@@ -85,24 +89,30 @@
     }
 ?>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--Style CSS-->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>E-Ticket</title>
+</head>
+<body>
 <div class="my-contain d-flex justify-content-center align-items-center">
     <form action="#" method="post" class="formulaire needs-validation" novalidate>
-        <h1>E-TICKET</h1>
+        <h3>ADMIN E-TICKET</h3>
         <div class="form-group">
-            <label for="login">Prénom</label>
-            <input type="text" value="<?= $prenom ?>" name="prenom" class="form-control form-control-lg" id="prenom" placeholder="Votre prénom" required>
+            <label for="login">Login</label>
+            <input type="tel" pattern="(70|75|76|77|78)[0-9]{7}" name="username" value="<?= $tel ?>" class="form-control form-control-lg" id="login" placeholder="771234567" required>
         </div>
-
-        <div class="form-group">
-            <label for="login">Nom</label>
-            <input type="text" value="<?= $nom ?>" name="nom" class="form-control form-control-lg" id="nom" placeholder="Votre nom" required>
+        <div class="invalid-feedback">
+            Please choose a username.
         </div>
-
-        <div class="form-group">
-            <label for="login">Télépone</label>
-            <input type="tel" value="<?= $phone ?>" pattern="(70|75|76|77|78)[0-9]{7}" name="phone" class="form-control form-control-lg" id="phone" placeholder="771234567" required>
-        </div>
-        
 
         <div class="form-group">
             <label for="passw">Mot de passe</label>
@@ -112,8 +122,8 @@
             Please choose a password.
         </div>
         <div class="bloc1">
-            <span>Vous avez déjà un compte? <a href="index.php">Se connecter</a></span>
-            <button class="btn" name="submit" type="submit">S'incrire</button>
+            <span>Vous n'avez pas de compte? <a href="index.php?page=insc">S'inscrire</a></span>
+            <button class="btn" name="submit" type="submit">Se connecter</button>
         </div>
 
     </form>
@@ -122,9 +132,22 @@
 </div>
 
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+
+</div>
+
+
+
 <script>
     
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    
     (function() {
         'use strict';
         window.addEventListener('load', function() {
@@ -153,3 +176,5 @@
     }
 
 </script>
+</body>
+</html>

@@ -45,15 +45,15 @@
     if(isset($_POST['submit'])){
         $tel = $_POST['username'];
         $password = $_POST['password'];
-        $user = connexion($tel);
-        if($user){
-            $passwordHash = $user['password'];
+        $client = connexion($tel);
+        if($client){
+            $passwordHash = $client['password'];
             if(password_verify($password, $passwordHash)){
-                $_SESSION['prenom'] = $user['prenom'];
-                $_SESSION['nom'] = $user['nom'];
-                $_SESSION['telephone'] = $user['telephone'];
-                $_SESSION['id_user'] = $user['id_user'];
-                header('Location: index.php?page=admin');
+                $_SESSION['prenom'] = $client['prenom'];
+                $_SESSION['nom'] = $client['nom'];
+                $_SESSION['telephone'] = $client['telephone'];
+                $_SESSION['id_client'] = $client['id_client'];
+                header('Location: index.php?page=client');
             }else{
                 echo "<div id='myModal' class='modal'>
                 <div class='modal-content justify-content-center align-items-center text-center'>
@@ -92,7 +92,7 @@
 
 <div class="my-contain d-flex justify-content-center align-items-center">
     <form action="#" method="post" class="formulaire needs-validation" novalidate>
-        <h1>E-TICKET</h1>
+        <h3>CLIENT E-TICKET</h3>
         <div class="form-group">
             <label for="login">Login</label>
             <input type="tel" pattern="(70|75|76|77|78)[0-9]{7}" name="username" value="<?= $tel ?>" class="form-control form-control-lg" id="login" placeholder="771234567" required>

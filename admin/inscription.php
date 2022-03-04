@@ -40,7 +40,7 @@
     $prenom = '';
     $nom = '';
     $phone = '';
-    require("fonction/traitement.php");
+    require("../fonction/traitement.php");
     if(isset($_POST['submit'])){
         //On met les données récupérées dans des variables
         $prenom = $_POST['prenom'];
@@ -49,7 +49,7 @@
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //Pour cripter le mot de passe
         
         //On vérifie si le numéro de téléphone n'existe pas déjà dans la base de données
-        $result = verifPhone($phone, 'client');
+        $result = verifPhone($phone, 'admin');
         if($result){
             //Si le numéro existe déjà, on bloque l'inscription
             echo "<div id='myModal' class='modal'>
@@ -62,13 +62,13 @@
 
             
         }else{
-            ajoutUser($prenom, $nom, $phone, $password, 'client');
+            ajoutClient($prenom, $nom, $phone, $password);
             $_SESSION['prenom'] = $prenom;
             $_SESSION['nom'] = $nom;
             $_SESSION['telephone'] = $phone;
             $client = getProfil($phone);
             $_SESSION['id_client'] = $client['id_client'];
-            header('Location: index.php?page=client');
+            header('Location: index.php?page=home');
         }
 
         echo "<script type='text/javascript'>

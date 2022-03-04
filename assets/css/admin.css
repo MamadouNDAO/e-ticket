@@ -60,6 +60,7 @@ body{
 
 a{
     color: var(--color-dark);
+    cursor: pointer;
 }
 
 img{
@@ -90,6 +91,10 @@ h5{
 
 small{
     font-size: 0.75rem;
+}
+
+.alink{
+    cursor: pointer;
 }
 
 .profil-photo{
@@ -126,6 +131,8 @@ b{
 .success{
     color: var(--color-success);
 }
+
+
 
 aside{
     height: 100vh;
@@ -174,6 +181,7 @@ aside .sidebar a{
     position: relative;
     height: 3.7rem;
     transition: all 300ms ease;
+    cursor: pointer;
 }
 
 aside .sidebar a i{
@@ -207,6 +215,7 @@ aside .sidebar a.active i{
 
 aside .sidebar a:hover{
     color: var(--color-primary);
+    cursor: pointer;
 }
 
 aside .sidebar a:hover i{

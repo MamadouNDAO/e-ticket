@@ -1,28 +1,22 @@
+/*// Get the container element
+var btnContainer = document.getElementById("mySide");
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
+// Get all buttons with class="btn" inside the container
+var btns = btnContainer.getElementsByClassName("alink");
 
-    var modal = document.getElementById("myModal");
-    var span = document.getElementsByClassName("close")[0];
-    function showModal(){
-        modal.style.display = "block";
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+function showOrHide(id){
+    var sects = document.getElementsByClassName("sect");
+    for (var i = 0; i < sects.length; i++) {
+        sects[i].style.display = "none";
     }
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+    document.getElementById(id).style.display = "block";
+}*/
