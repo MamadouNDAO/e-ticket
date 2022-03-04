@@ -112,7 +112,7 @@
             Please choose a password.
         </div>
         <div class="bloc1">
-            <span>Vous avez déjà un compte? <a href="index.php">Se connecter</a></span>
+            <span>Vous avez déjà un compte? <a href="./?page=login">Se connecter</a></span>
             <button class="btn" name="submit" type="submit">S'incrire</button>
         </div>
 
