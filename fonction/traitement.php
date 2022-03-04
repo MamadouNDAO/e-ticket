@@ -95,7 +95,7 @@ require ("bdd.php");
         }
     }
 
-    function updateEvent($vendu, $nbType, $id, $types,){
+    function updateEvent($vendu, $nbType, $id, $types){
         if(require("bdd.php")){
             $type = $types == 'vip' ? 'ticket_vip' : 'ticket_simple';
             $query = $conn->prepare("UPDATE event set ticket_vendu = ?, $type = ? WHERE id_event = ?");
