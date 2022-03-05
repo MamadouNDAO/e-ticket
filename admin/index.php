@@ -12,7 +12,7 @@
        $toShow = "./dashbord.php";
    }
 
-   if(isset($_GET['p'])){
+   if(isset($_GET['p'])){   
     if($_GET['p'] == 'events'){
         $toShow = "./events.php";
         $eventLink = 'active';
@@ -74,7 +74,7 @@
                     <i class="uil uil-graph-bar"></i>
                     <h3>Stats</h3>
                 </a>
-                <a href="#">
+                <a href="../index.php?page=exit">
                     <i class="uil uil-signout"></i>
                     <h3>Déconnexion</h3>
                 </a>
