@@ -62,13 +62,13 @@
 
             
         }else{
-            ajoutClient($prenom, $nom, $phone, $password);
-            $_SESSION['prenom'] = $prenom;
-            $_SESSION['nom'] = $nom;
+            ajoutUser($prenom, $nom, $phone, $password, 'admin');
+            $_SESSION['aprenom'] = $prenom;
+            $_SESSION['anom'] = $nom;
             $_SESSION['telephone'] = $phone;
-            $client = getProfil($phone);
-            $_SESSION['id_client'] = $client['id_client'];
-            header('Location: index.php?page=home');
+            /*$admin = getProfil($phone);
+            $_SESSION['id_client'] = $client['id_client'];*/
+            header('Location: ./');
         }
 
         echo "<script type='text/javascript'>
@@ -85,6 +85,19 @@
     }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--Style CSS-->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Inscription</title>
+</head>
+<body>
 <div class="my-contain d-flex justify-content-center align-items-center">
     <form action="#" method="post" class="formulaire needs-validation" novalidate>
         <h1>E-TICKET</h1>
@@ -112,7 +125,7 @@
             Please choose a password.
         </div>
         <div class="bloc1">
-            <span>Vous avez déjà un compte? <a href="index.php">Se connecter</a></span>
+            <span>Vous avez déjà un compte? <a href="./login.php">Se connecter</a></span>
             <button class="btn" name="submit" type="submit">S'incrire</button>
         </div>
 
@@ -153,3 +166,5 @@
     }
 
 </script>
+</body>
+</html>

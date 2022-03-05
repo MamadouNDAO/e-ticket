@@ -17,25 +17,33 @@
     if(isset($_POST['submit'])){
         /*var_dump(uniqid());
         die();*/
+        
         $nbrp = (int)$_POST['nbplace'];
         for($i == 1; $i <= $nbrp; $i++){
-            $numeroTicket = uniqid();
             if($_GET['type'] == 'vip'){
                 $nbType = (int)$event['ticket_vip'] + 1;
                 $types = 'vip';
+                $prix = $event['prix_vip'];
             }else{
                 $nbType = (int)$event['ticket_simple'] + 1;
                 $types = 'simple';
+                $prix = $event['prix_simple'];
             }
             $vendu = $event['ticket_vendu'] + 1;
             updateEvent($vendu, $nbType, $event['id_event'], $types);
-            setTicket($numeroTicket, $event['id_event'], $_SESSION['id_client']);
+            setTicket($event['id_event'], $_SESSION['id_client'], $prix, $types);
         }
         header('Location: index.php?page=ticket');
     }
 ?>
 
 <div class="events">
+    <nav class="navbar navbar-dark bg-dark">
+        <a style="margin-left: 15px;" href="./?page=events" class="btn btn-outline-warning">
+            <i class="uil uil-arrow-left"></i>    
+            Retour
+        </a>
+    </nav>
     <h4>Réservation de ticket</h4>
     <br>
 
@@ -81,8 +89,9 @@
             </div>
 
             <div class="row">
-                <a href="" class="col">
-                    <button style="width: 100%;" class="btn btn-danger">Annuler</button>
+                <a href="./?page=events" class="col btn " style="color: red;">
+                    <i class="uil uil-arrow-left"></i>
+                    Annuler
                 </a>
                 <div class="col"></div>
                 <div class="col"></div>

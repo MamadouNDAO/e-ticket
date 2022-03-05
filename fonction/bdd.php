@@ -5,7 +5,7 @@
         $host = "localhost";
         $dbusername = "root";
         $pass = "";
-        $bdd = "e-ticket";
+        $bdd = "eticket";
         $conn = new PDO("mysql:host=$host;dbname=$bdd", $dbusername, $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (Exception $e) {

@@ -17,7 +17,7 @@
                 <span>Pour acheter un ticket</span>
                 </button>
             </a>
-            <a href="#" class="col-3">
+            <a href="./?page=ticket" class="col-3">
                 <button class="btn btn-secondary" style="width: 100%;">
                 <i class="uil uil-shopping-cart-alt"></i>
                 Mes tickets

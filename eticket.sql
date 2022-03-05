@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 04 mars 2022 à 21:26
+-- Généré le : sam. 05 mars 2022 à 08:48
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -38,7 +38,9 @@ CREATE TABLE `artiste` (
 
 INSERT INTO `artiste` (`id`, `nom`) VALUES
 (1, 'Youssou Ndour'),
-(2, 'Wally Seck');
+(2, 'Wally Seck'),
+(3, 'Viviane Chidide'),
+(4, 'Dip');
 
 -- --------------------------------------------------------
 
@@ -93,11 +95,12 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id_event`, `libelle`, `date`, `heure`, `lieu`, `poster`, `ticket_vendu`, `ticket_vip`, `ticket_simple`, `artiste_id`, `place`, `vip`, `simple`, `prix_vip`, `prix_simple`) VALUES
 (1, 'Youssou Ndour', '2022-02-25', '', 'Grand Théatre', NULL, 2500, 500, 200, 1, 0, 0, 0, 0, 0),
-(2, 'Wally B. Seck', '2022-03-19', '', 'Sorano', NULL, 2, 2, 0, 2, 350, 150, 200, 15000, 10000),
+(2, 'Wally B. Seck', '2022-03-19', '', 'Sorano', 'waly.jpg', 2, 2, 0, 2, 350, 150, 200, 15000, 10000),
 (3, 'a', '2022-02-11', '00:05', 'mercedes', '2651fiche technique.jpg', 0, 0, 0, 1, 1000, 100, 900, 1000, 500),
-(11, 'dancing', '2022-04-08', '00:50', 'saab', '5879aram.jpeg', 4, 14, 50, 1, 150, 50, 100, 2500, 2000),
-(12, 'barak', '2022-03-24', '01:05', 'audi', '6533aram.jpeg', 0, 0, 0, 1, 455, 100, 355, 1500, 1000),
-(13, 'Bal Bayakh', '2022-04-10', '00:00', 'audi', '992cytonn-photography-n95vmlxqm2i-unsplash.jpg', 0, 0, 0, 1, 200, 50, 150, 3000, 2000);
+(11, 'dancing', '2022-04-08', '00:50', 'Sorano', 'you.jpg', 4, 14, 50, 1, 150, 50, 100, 2500, 2000),
+(12, 'barak', '2022-03-24', '01:05', 'Sorano', 'you.jpg', 2, 2, 0, 1, 455, 100, 355, 1500, 1000),
+(13, 'Vivi', '2022-04-10', '00:00', 'Sorano', 'vivi.jpg', 0, 0, 0, 1, 2000, 500, 1500, 15000, 10000),
+(14, 'Dip', '2022-04-30', '23:00', 'Aréna', '6156arton8276.png', 0, 0, 0, 4, 3000, 1000, 2000, 5000, 4000);
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,6 @@ INSERT INTO `event` (`id_event`, `libelle`, `date`, `heure`, `lieu`, `poster`, `
 
 CREATE TABLE `ticket` (
   `id_ticket` int(11) NOT NULL,
-  `numero` varchar(250) NOT NULL,
   `id_event` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
   `date` date DEFAULT NULL,
@@ -119,19 +121,10 @@ CREATE TABLE `ticket` (
 -- Déchargement des données de la table `ticket`
 --
 
-INSERT INTO `ticket` (`id_ticket`, `numero`, `id_event`, `id_client`, `date`, `prix`, `type`) VALUES
-(1, '622245189c231', 11, 2, NULL, 0, ''),
-(2, '62224518c49aa', 11, 2, NULL, 0, ''),
-(3, '62224518d619d', 11, 2, NULL, 0, ''),
-(4, '6222454d4bc09', 11, 2, NULL, 0, ''),
-(5, '62224621bda1d', 11, 2, NULL, 0, ''),
-(6, '6222622fdfb2b', 2, 3, NULL, 0, ''),
-(7, '622262302e836', 2, 3, NULL, 0, ''),
-(8, '622268c67ca33', 2, 3, NULL, 0, ''),
-(9, '622268c6bba35', 2, 3, NULL, 0, ''),
-(10, '622268c6c7064', 2, 3, NULL, 0, ''),
-(11, '622268c70154b', 2, 3, NULL, 0, ''),
-(12, '622268c7255a2', 2, 3, NULL, 0, '');
+INSERT INTO `ticket` (`id_ticket`, `id_event`, `id_client`, `date`, `prix`, `type`) VALUES
+(13, 12, 3, '2022-03-05', 1500, 'vip'),
+(14, 12, 3, '2022-03-05', 1500, 'vip'),
+(15, 12, 3, '2022-03-05', 1500, 'vip');
 
 -- --------------------------------------------------------
 
@@ -154,7 +147,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `prenom`, `nom`, `telephone`, `password`, `photo`) VALUES
 (1, 'Mamadou', 'ndao', '785824772', '$2y$10$H9UTP1E0rLk/rKVJD3EO2uqgy1pnxA7hpAH98wMpUzs.9gSOIqdjC', NULL),
-(2, 'Marie', 'Anne', '773211059', '$2y$10$WFsCRAMfVnW8ETYI7Hy9heHeAOSDZybaFXEQsK6yfOmubdiluK4HO', NULL);
+(2, 'Marie', 'Anne', '773211059', '$2y$10$WFsCRAMfVnW8ETYI7Hy9heHeAOSDZybaFXEQsK6yfOmubdiluK4HO', NULL),
+(3, 'Aminata', 'Diagne', '773333333', '$2y$10$N0FeYgrgydMnkJ/ujbG8fO5Z0D8VdTHmWxemeYF3HFHDPdiJAcRwi', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -202,7 +196,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `artiste`
 --
 ALTER TABLE `artiste`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `client`
@@ -214,19 +208,19 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées

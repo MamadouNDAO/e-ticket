@@ -104,10 +104,11 @@ require ("bdd.php");
         }
     }
 
-    function setTicket($numero, $event, $client){
+    function setTicket($event, $client, $prix, $type){
         if(require("bdd.php")){
-            $query = $conn->prepare("INSERT INTO ticket (numero, id_event, id_client) VALUES (?, ?, ?)");
-            $query->execute([$numero, $event, $client]);
+            $date = date("Y-m-d");
+            $query = $conn->prepare("INSERT INTO ticket (id_event, id_client, date, prix, type) VALUES (?, ?, ?, ?, ?)");
+            $query->execute([$event, $client, $date, $prix, $type]);
             $query->closeCursor();
         }
     }
@@ -118,6 +119,16 @@ require ("bdd.php");
             $query->execute([$id]);
             $tickets = $query->fetchAll();
             return $tickets;
+            $query->closeCursor();
+        }
+    }
+
+    function getArtiste(){
+        if(require("bdd.php")){
+            $query = $conn->prepare("SELECT * FROM artiste");
+            $query->execute();
+            $artistes = $query->fetchAll();
+            return $artistes;
             $query->closeCursor();
         }
     }

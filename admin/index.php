@@ -102,11 +102,11 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Bonjour, <b>Mamadou</b></p>
+                        <p>Bonjour, <b><?= $_SESSION['aprenom'] ?></b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profil-photo">
-                        <img src="../assets/images/profil/ndao.jpg" alt="" srcset="">
+                        <img src="../assets/images/profil/mianne.png" alt="" srcset="">
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                 <div class="updates">
                     <div class="update">
                         <div class="profil-photo">
-                            <img src="../assets/images/profil/ndao.jpg" alt="" srcset="">
+                            <img src="../assets/images/poster/you.jpg" alt="" srcset="">
                         </div>
                         <div class="message">
                             <p><b>Bercy Y. Ndour</b> Lorem ipsum dolor sit amet consectetur adipisicing?</p>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="update">
                         <div class="profil-photo">
-                            <img src="../assets/images/profil/ndao.jpg" alt="" srcset="">
+                            <img src="../assets/images/poster/you.jpg" alt="" srcset="">
                         </div>
                         <div class="message">
                             <p><b>Bercy Y. Ndour</b> Lorem ipsum dolor sit amet consectetur adipisicing?</p>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="update">
                         <div class="profil-photo">
-                            <img src="../assets/images/profil/ndao.jpg" alt="" srcset="">
+                            <img src="../assets/images/poster/you.jpg" alt="" srcset="">
                         </div>
                         <div class="message">
                             <p><b>Bercy Y. Ndour</b> Lorem ipsum dolor sit amet consectetur adipisicing?</p>

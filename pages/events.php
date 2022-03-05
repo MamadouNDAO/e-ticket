@@ -4,6 +4,12 @@
     
 ?>
 <div class="events">
+    <nav class="navbar navbar-dark bg-dark">
+        <a style="margin-left: 15px;" href="./?page=client" class="btn btn-outline-warning">
+            <i class="uil uil-arrow-left"></i>    
+            Retour
+        </a>
+    </nav>
     <h4>Liste des événements encours...</h4>
     <br>
     <div class="container row d-flex justify-content-center align-items-center my-content">
@@ -11,7 +17,7 @@
             
         <div class="col-4">
             <div class="card">
-                <img class="card-img-top" src="./assets/images/bg1.jpg" alt="Card image cap">
+                <img class="card-img-top" src="./assets/images/poster/<?= $event['poster'] ?>" alt="Card image cap">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
@@ -40,7 +46,7 @@
                     <br>
                     <div class="row justify-content-around">
                         <a href="./?page=achat&type=vip&id=<?= $event['id_event'] ?>" class="col-5 btn btn-primary">VIP</a>
-                        <a href="./?page=achat&type=simple" class="col-5 btn btn-secondary">Simple</a>
+                        <a href="./?page=achat&type=simple&id=<?= $event['id_event'] ?>" class="col-5 btn btn-secondary">Simple</a>
                     </div>
                 </div>
             </div>

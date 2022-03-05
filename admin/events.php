@@ -2,7 +2,7 @@
     //session_start();
     require("../fonction/traitement.php");
     $_SESSION['events'] = getEvent();
-    
+    $artistes = getArtiste();
 
 ?>
 
@@ -217,13 +217,18 @@
             </div>
 
             <div class="form-group">
-                <input type="text" name="artiste" class="form-control" placeholder="Artiste" required>
+                <select name="artiste"  class="form-select" aria-label="Default select example" required>
+                    <option disabled selected value><small class="text-muted">-----Choisir un artiste-----</small></option>
+                    <?php foreach($artistes as $artiste): ?>
+                    <option value="<?= $artiste['id'] ?>"><?= $artiste['nom'] ?></option>
+                    <?php endforeach ?>
+                </select>
             </div>
             <select name="lieu" id="lieu" class="form-select" aria-label="Default select example" required>
                 <option disabled selected value><small class="text-muted">-----Choisir un lieu-----</small></option>
-                <option value="saab">Sorano</option>
-                <option value="mercedes">Dakar Aréna</option>
-                <option value="audi">Baramundi</option>
+                <option value="Sorano">Sorano</option>
+                <option value="Aréna">Dakar Aréna</option>
+                <option value="Baramundi">Baramundi</option>
             </select>
 
             <div class="form-group">

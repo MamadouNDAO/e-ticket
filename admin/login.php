@@ -49,9 +49,9 @@
         if($admin){
             $passwordHash = $admin['password'];
             if(password_verify($password, $passwordHash)){
-                $_SESSION['prenom'] = $admin['prenom'];
-                $_SESSION['nom'] = $admin['nom'];
-                $_SESSION['telephone'] = $admin['telephone'];
+                $_SESSION['aprenom'] = $admin['prenom'];
+                $_SESSION['anom'] = $admin['nom'];
+                $_SESSION['atelephone'] = $admin['telephone'];
                 $_SESSION['id_admin'] = $admin['id_user'];
                 header('Location: index.php?page=home');
             }else{
@@ -122,7 +122,7 @@
             Please choose a password.
         </div>
         <div class="bloc1">
-            <span>Vous n'avez pas de compte? <a href="index.php?page=insc">S'inscrire</a></span>
+            <span>Vous n'avez pas de compte? <a href="./inscription.php">S'inscrire</a></span>
             <button class="btn" name="submit" type="submit">Se connecter</button>
         </div>
 
